@@ -1,7 +1,7 @@
 SMODS.Joker{
     key = "creased_joker",
     atlas = "sxfjokeratlas",
-    pos = { x = 1, y = 0},
+    pos = { x = 0, y = 0},
     rarity = 1,
     blueprint_compat = true, 
     loc_txt = {
