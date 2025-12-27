@@ -2,7 +2,7 @@ SMODS.Joker{
     key = "water_balloon",
     atlas = "sxfjokeratlas",
     pos = { x = 2, y = 0},
-    rarity = 2,
+    rarity = 3,
     cost = 7,
     blueprint_compat = false, 
     loc_txt = {

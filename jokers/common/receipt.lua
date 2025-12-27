@@ -29,10 +29,7 @@ SMODS.Joker{
         local _played_cards = {}
         local is_dupe = nil
 
-        if context.before and (#context.full_hand >= 5) 
-        --and (context.scoring_name == "High Card") 
-        -- and is_dupe == false
-        then
+        if context.before and (#context.full_hand >= 5) then
             --create table of played card ranks for this hand
             for i = 1, #context.full_hand do
                 _played_cards[i] = context.full_hand[i].base.value
@@ -43,7 +40,6 @@ SMODS.Joker{
                 for j = i + 1, #_played_cards do
                     if _played_cards[i] == _played_cards[j] then
                         is_dupe = true
-                        print("DUPLICATED CARD: " .. _played_cards[j])
                         break
                     end
                 end
