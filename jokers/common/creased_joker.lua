@@ -9,7 +9,7 @@ SMODS.Joker{
             text = {
                 "Played cards with", 
                 "ranks {C:attention}2-8{} give {C:chips}+#1#{} Chips",
-                "cards with ranks",
+                "Played cards with ranks",
                 "{C:attention}9-A{} give {C:mult}+#2#{} Mult"
             }
         },
