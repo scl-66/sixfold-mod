@@ -3,6 +3,7 @@ SMODS.Joker{
     atlas = "sxfjokeratlas",
     pos = { x = 0, y = 0},
     rarity = 1,
+    cost = 5,
     blueprint_compat = true, 
     loc_txt = {
             name = "Creased Joker",
