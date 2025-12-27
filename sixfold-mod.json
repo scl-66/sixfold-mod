@@ -1,0 +1,16 @@
+{
+	"id": "sixfold",
+	"name": "Sixfold",
+	"author": ["sixtydegrees", "Fred"],
+	"description": "Balatro's Calamity-Killer (generic vanilla-oriented mod me and some friends made)",
+	"prefix": "sxf",
+	"main_file": "main.lua",
+	"priority": -20, 
+	"badge_colour": "d9a106", 
+	"badge_text_colour": "FFFFFF",
+	"display_name": "Sixfold",
+	"version": "1.0.0",
+	"dependencies": [
+	], 
+	"dump_loc": false
+}
