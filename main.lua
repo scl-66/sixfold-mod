@@ -6,5 +6,9 @@ SMODS.Atlas{
     py = 95
 }
 
+-- COMMON JOKERS
 assert(SMODS.load_file("jokers/common/creased_joker.lua"))()
+
+-- UNCOMMON JOKERS
 assert(SMODS.load_file("jokers/uncommon/mirrored_joker.lua"))()
+assert(SMODS.load_file("jokers/uncommon/water_balloon.lua"))()
