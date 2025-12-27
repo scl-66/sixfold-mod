@@ -2,8 +2,8 @@ SMODS.Joker{
     key = "ransom_note",
     atlas = "sxfjokeratlas",
     pos = { x = 4, y = 0},
-    rarity = 2,
-    cost = 5,
+    rarity = 3,
+    cost = 7,
     blueprint_compat = true, 
     loc_txt = {
             name = "Ransom Note",
