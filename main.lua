@@ -17,3 +17,4 @@ assert(SMODS.load_file("jokers/uncommon/camera_shutter.lua"))()
 -- RARE JOKERS
 assert(SMODS.load_file("jokers/rare/water_balloon.lua"))()
 assert(SMODS.load_file("jokers/rare/ransom_note.lua"))()
+assert(SMODS.load_file("jokers/rare/valentine_card.lua"))()
