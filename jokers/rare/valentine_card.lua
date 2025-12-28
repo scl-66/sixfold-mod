@@ -17,7 +17,7 @@ SMODS.Joker{
         },
     config = {
             extra = {
-                mult_gain = 12,
+                mult_gain = 8,
                 mult = 0,
                 suit = "Hearts",
             }
@@ -37,14 +37,23 @@ SMODS.Joker{
             juice_card_until(card, eval, true)
         end
 
-        if context.destroy_card and (not context.blueprint) and (#context.full_hand == 1) and 
-        (context.destroy_card == context.full_hand[1]) and (context.full_hand[1]:is_suit(card.ability.extra.suit)) 
-        and (G.GAME.current_round.hands_played == 0) then
-            card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain 
-            return {
-                remove = true
-            }
+        if context.before then
+            if not context.blueprint and #context.full_hand == 1 
+            and context.full_hand[1]:is_suit(card.ability.extra.suit) 
+            and G.GAME.current_round.hands_played == 0 then
+                -- destroy card, upgrade joker mult
+                SMODS.destroy_cards(context.full_hand[1])
+                card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain
+
+                -- upgrade message
+                return {
+                    message = localize('k_upgrade_ex'),
+                    colour = G.C.MULT,
+                }
+            end
         end
+
+        
 
         if context.joker_main then
             return {
