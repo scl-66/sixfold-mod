@@ -1,23 +1,16 @@
 -- #region MIRRORED JOKER (UNFINISHED)
-SMODS.Joker{
+SMODS.Joker {
     key = "mirrored_joker",
     atlas = "sxfjokeratlas",
-    pos = { x = 1, y = 0},
+    pos = { x = 1, y = 0 },
     rarity = 2,
     cost = 5,
-    blueprint_compat = true, 
-    loc_txt = {
-            name = "Mirrored Joker",
-            text = {
-                "Earn {C:money}$#1#{} every time a",
-                "scoring card is {C:attention}retriggered{}"
-            }
-        },
+    blueprint_compat = true,
     config = {
-            extra = {
-                dollars = 1,
-            }
-        },
+        extra = {
+            dollars = 1,
+        }
+    },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
@@ -26,10 +19,8 @@ SMODS.Joker{
         }
     end,
 
-    calculate = function (self, card, context)
-        
-        if context.individual and context.cardarea == G.play then            
-
+    calculate = function(self, card, context)
+        if context.individual and context.cardarea == G.play then
             -- sets the trigger count
             context.other_card.count = (context.other_card.count or 0) + 1
 
@@ -40,7 +31,7 @@ SMODS.Joker{
                 }
             end
         end
-        
+
         -- reset the triggers
         if context.joker_main then
             for i = 1, #context.scoring_hand do
@@ -53,7 +44,7 @@ SMODS.Joker{
 }
 -- #endregion
 
--- #region CAMERA SHUTTER (WIP SPRITE)
+-- #region CAMERA SHUTTER (NEEDS SPRITE)
 SMODS.Joker {
     key = "camera_shutter",
     atlas = "sxfjokeratlas",
@@ -61,14 +52,7 @@ SMODS.Joker {
     eternal_compat = false,
     rarity = 2,
     cost = 7,
-    pos = { x = 6, y = 0 },
-    loc_txt = {
-            name = "Camera Shutter",
-            text = {
-                "Sell this card to create", 
-                "a free {C:attention}Negative Tag{}"
-            }
-        },
+    pos = { x = 9, y = 0 },    
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = { key = 'tag_negative', set = 'Tag' }
         return { vars = { localize { type = 'name_text', set = 'Tag', key = 'tag_negative' } } }
