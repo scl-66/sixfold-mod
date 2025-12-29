@@ -26,16 +26,7 @@ local function perform_checks(table1, op, table2, mod)
     return false
 end
 
-local is_face_ref = Card.is_face
-function Card:is_face(from_boss)
-    local ret = is_face_ref(self, from_boss)
-
-    if self.ability.effect == 'Wild Card' then
-        return true
-    end
-    return ret
-end
-
+-- change Wild Card description localization when Mr. Rorschach is in deck
 SMODS.Enhancement:take_ownership("wild", {
     loc_vars = function(self, info_queue, card)
         if next(SMODS.find_card("j_sxf_mr_rorschach")) then
@@ -44,6 +35,18 @@ SMODS.Enhancement:take_ownership("wild", {
     end
 })
 
+-- if Mr. Rorschach is in deck, Wild Cards are considered face cards
+local is_face_ref = Card.is_face
+function Card:is_face(from_boss)
+    local ret = is_face_ref(self, from_boss)
+
+    if self.ability.effect == 'Wild Card' and next(SMODS.find_card('j_sxf_mr_rorschach')) then
+        return true
+    end
+    return ret
+end
+
+-- if Mr. Rorschach is in deck, add all ranks to Wild Card rank table
 local ids_op_ref = ids_op
 function ids_op(card, op, b, c)
     local id = card:get_id()

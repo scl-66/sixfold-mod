@@ -269,7 +269,8 @@ SMODS.Joker {
 }
 -- #endregion
 
--- #region MR. RORSCHACH (UNFINISHED, NEEDS SPRITE)
+-- #region MR. RORSCHACH (NEEDS SPRITE)
+-- TODO: make this joker's effect on Wild Cards eventually work with poker hands
 SMODS.Joker {
     key = "mr_rorschach",
     atlas = "sxfjokeratlas",
