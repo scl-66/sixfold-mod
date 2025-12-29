@@ -269,7 +269,7 @@ SMODS.Joker {
 }
 -- #endregion
 
--- #region MR. RORSCHACH
+-- #region MR. RORSCHACH (UNFINISHED, NEEDS SPRITE)
 SMODS.Joker {
     key = "mr_rorschach",
     atlas = "sxfjokeratlas",
