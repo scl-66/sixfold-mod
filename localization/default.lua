@@ -37,6 +37,15 @@ return {
                     "a free {C:dark_edition}Negative Tag{}"
                 },
             },
+            j_sxf_mandelbrot = {
+                name = "Mandelbrot",
+                text = {
+                    "When a card is {C:attention}retriggered{}, add",
+                    "{C:attention}half{} of its base Chip value to",
+                    "this Joker's chips",
+                    "{C:inactive}(currently{} {C:chips}+#1#{} {C:inactive}Chips){}"
+                },
+            },
             --#endregion
             --#region RARE JOKERS
             j_sxf_water_balloon = {

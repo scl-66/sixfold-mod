@@ -1,0 +1,13 @@
+[manifest] # Header for the file, this should only be here once at the beginning
+version = "0.1.0"
+priority = 0 # Priority for loading the file
+
+[[patches]]
+[patches.pattern]
+target = '''=[SMODS _ "src/utils.lua"]'''
+pattern = '''effect.message = effect.message or (not effect.remove_default_message and localize('k_again_ex'))'''
+position = "after"
+payload = '''
+effect.extra = {func = function() SMODS.calculate_context({card_retriggered = true}) end}
+'''
+match_indent = true

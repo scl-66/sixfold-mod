@@ -52,7 +52,7 @@ SMODS.Joker {
     eternal_compat = false,
     rarity = 2,
     cost = 7,
-    pos = { x = 9, y = 0 },    
+    pos = { x = 9, y = 0 },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = { key = 'tag_negative', set = 'Tag' }
         return { vars = { localize { type = 'name_text', set = 'Tag', key = 'tag_negative' } } }
@@ -68,6 +68,46 @@ SMODS.Joker {
                 end)
             }))
             return nil, true -- This is for Joker retrigger purposes
+        end
+    end,
+}
+-- #endregion
+
+-- #region MANDELBROT
+SMODS.Joker {
+    key = "mandelbrot",
+    atlas = "sxfjokeratlas",
+    blueprint_compat = true,
+    eternal_compat = false,
+    rarity = 2,
+    cost = 5,
+    pos = { x = 1, y = 1 },
+    config = {
+        extra = {
+            chips = 0,
+        }
+    },
+    loc_vars = function(self, info_queue, card)
+        return {
+            vars = {
+                card.ability.extra.chips, -- replace #1# in the description with this value
+            }
+        }
+    end,
+    calculate = function(self, card, context)
+        if context.individual and context.cardarea == G.play then
+            card.ability.extra.chips = card.ability.extra.chips + math.floor(context.other_card.base.nominal / 2)
+            -- upgrade message
+            return {
+                message = localize('k_upgrade_ex'),
+                colour = G.C.CHIPS,
+            }
+        end
+
+        if context.joker_main then
+            return {
+                chips = card.ability.extra.chips
+            }
         end
     end,
 }
