@@ -54,15 +54,6 @@ return {
                     "{C:inactive}(currently{} {C:chips}+#1#{} {C:inactive}Chips){}"
                 },
             },
-            j_sxf_pop_art = {
-                name = "Pop Art",
-                text = {
-                    "First time {C:attention}#1#{} is",
-                    "played in round, increase rank",
-                    "of all {C:attention}scored cards{} by {C:attention}1{}.",
-                    "Poker hand changes at end of round"
-                },
-            },
             --#endregion
             --#region RARE JOKERS
             j_sxf_water_balloon = {
@@ -128,6 +119,22 @@ return {
                     "{C:attention}any rank{} instead of any suit",
                     "{C:inactive}(Does not affect poker hands){}"
                 }
+            },
+            j_sxf_pop_art = {
+                name = "Pop Art",
+                text = {
+                    "If played {C:attention}poker hand{} is a {C:attention}#1#{},",
+                    "increase rank of all {C:attention}scored cards{} by {C:attention}1{}.",
+                    "Poker hand changes at end of round"
+                },
+            },
+            j_sxf_eldritch_joker = {
+                name = "Eldritch Joker",
+                text = {
+                    "{C:attention}Debuffs{} all Jokers {C:attention}left{} of this Joker.",
+                    "{X:mult,C:white}X#1#{} Mult for each Joker debuffed",
+                    "{C:inactive}Currently{} {X:mult,C:white}X#2#{} {C:inactive}Mult{}"
+                },
             },
             --#endregion
         },
