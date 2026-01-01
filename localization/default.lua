@@ -21,6 +21,14 @@ return {
                     "different {C:attention}ranks{},"
                 },
             },
+            j_sxf_placeholder_joker = {
+                name = "PLaceholder Joker",
+                text = {
+                    "Each {C:attention}unscored{} card in",
+                    "palyed hand gives {C:mult}+#1#{} Mult",
+                    "{C:inactive}(WIP){}"
+                },
+            },
             --#endregion
             --#region UNCOMMON JOKERS
             j_sxf_mirrored_joker = {
@@ -44,6 +52,15 @@ return {
                     "{C:attention}half{} of its base Chip value to",
                     "this Joker's chips",
                     "{C:inactive}(currently{} {C:chips}+#1#{} {C:inactive}Chips){}"
+                },
+            },
+            j_sxf_pop_art = {
+                name = "Pop Art",
+                text = {
+                    "First time {C:attention}#1#{} is",
+                    "played in round, increase rank",
+                    "of all {C:attention}scored cards{} by {C:attention}1{}.",
+                    "Poker hand changes at end of round"
                 },
             },
             --#endregion

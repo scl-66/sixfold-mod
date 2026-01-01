@@ -96,3 +96,33 @@ SMODS.Joker {
     end
 }
 -- #endregion
+
+-- #region PLACEHOLDER JOKER (totally unfinished)
+SMODS.Joker {
+    key = "placeholder_joker",
+    atlas = "sxfjokeratlas",
+    pos = { x = 2, y = 1 },
+    rarity = 1,
+    cost = 3,
+    blueprint_compat = true,
+    config = {
+        extra = {
+            mult = 4,
+        }
+    },
+    loc_vars = function(self, info_queue, card)
+        return {
+            vars = {
+                card.ability.extra.mult, -- replace #1# in the description with this value
+            }
+        }
+    end,
+    calculate = function(self, card, context)
+        if context.individual and context.cardarea == 'unscored' then
+            return {
+                mult = card.ability.extra.mult,
+            }
+        end
+    end,
+}
+-- #endregion

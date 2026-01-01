@@ -99,3 +99,10 @@ function ids_op(card, op, b, c)
 
     error("ids_op: unsupported op " .. tostring(op))
 end
+
+local insert_repetitions_ref = SMODS.insert_repetitions
+function SMODS.insert_repetitions(ret, eval, effect_card, _type)
+    local retu = insert_repetitions_ref(ret, eval, effect_card, _type)
+    G.GAME.sxf_retriggered_value = effect_card:get_chip_bonus()
+    return retu
+end

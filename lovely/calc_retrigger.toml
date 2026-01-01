@@ -9,5 +9,6 @@ pattern = '''effect.message = effect.message or (not effect.remove_default_messa
 position = "after"
 payload = '''
 effect.extra = {func = function() SMODS.calculate_context({card_retriggered = true}) end}
+print(tostring(effect_card:get_chip_bonus()))
 '''
 match_indent = true

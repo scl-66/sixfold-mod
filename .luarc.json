@@ -1,3 +1,6 @@
 {
-  "Lua.workspace.library": ["C:/Users/scrat/AppData/Roaming/Balatro/Mods/smods-main", "C:/Users/scrat/AppData/Roaming/Balatro/Mods/lovely/dump"]
+  "Lua.workspace.library": ["C:/Users/scrat/AppData/Roaming/Balatro/Mods/smods-main", "C:/Users/scrat/AppData/Roaming/Balatro/Mods/lovely/dump"],
+    "diagnostics.globals": [
+        "retriggered_card"
+    ]
 }
