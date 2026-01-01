@@ -373,6 +373,7 @@ SMODS.Joker {
 -- #endregion
 
 -- #region ELDRITCH JOKER (UNFINISHED)
+-- TODO: fix eldritch_joker and cards to the right of joker being unaffected by other sources of debuffs (crimson heart)
 SMODS.Joker {
     key = "eldritch_joker",
     atlas = "sxfjokeratlas",
@@ -384,42 +385,32 @@ SMODS.Joker {
         extra = {
             xmult_gain = 1.25,
             xmult = 1,
-            sacrificed_joker_count = 0
+            --sacrificed_joker_count = 0
         }
     },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
                 card.ability.extra.xmult_gain, -- replace #1# in the description with this value
-                (card.ability.extra.xmult_gain * (card.ability.extra.sacrificed_joker_count or 0)) + 1
+                (card.ability.extra.xmult_gain * (G.GAME.sxf_sacrificed_joker_count or 0)) + 1,
             }
         }
     end,
-    ---[[
-    update = function(self, card, dt)
-        -- get number of jokers left of eldritch_joker
-        for i = 1, #G.jokers.cards do
-            if G.jokers.cards[i] == card and i > 1 then
-                card.ability.extra.sacrificed_joker_count = i - 1
-                for j = 1, card.ability.extra.sacrificed_joker_count do
-                    SMODS.debuff_card(G.jokers.cards[j], true, 'j_sxf_eldritch_joker')
-                end
-            elseif G.jokers.cards[i] == card and i == 1 then
-                card.ability.extra.sacrificed_joker_count = 0
+    load = function (self, card, card_table, other_card)
+        G.E_MANAGER:add_event(Event({
+            blocking = false,
+            blockable = false,
+            func = function()
+                check_jokers_left_of_eldritch()
+                return true
             end
-            if i < #G.jokers.cards then
-                for k = i, #G.jokers.cards do
-                    SMODS.debuff_card(G.jokers.cards[k], "prevent_debuff", 'j_sxf_eldritch_joker')
-                end
-            end
-        end
+        }))
     end,
-    --]]
     calculate = function(self, card, context)
         if context.joker_main then
             -- give xmult
             return {
-                xmult = (card.ability.extra.xmult_gain * (card.ability.extra.sacrificed_joker_count or 0)) + 1
+                xmult = (card.ability.extra.xmult_gain * (G.GAME.sxf_sacrificed_joker_count or 0)) + 1
             }
         end
     end

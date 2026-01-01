@@ -26,7 +26,7 @@ local function perform_checks(table1, op, table2, mod)
     return false
 end
 
--- change Wild Card description localization when Mr. Rorschach is in deck
+-- #region change Wild Card description localization when Mr. Rorschach is in deck
 SMODS.Enhancement:take_ownership("wild", {
     loc_vars = function(self, info_queue, card)
         if next(SMODS.find_card("j_sxf_mr_rorschach")) then
@@ -34,8 +34,9 @@ SMODS.Enhancement:take_ownership("wild", {
         end
     end
 })
+-- #endregion
 
--- if Mr. Rorschach is in deck, Wild Cards are considered face cards
+-- #region if Mr. Rorschach is in deck, Wild Cards are considered face cards
 local is_face_ref = Card.is_face
 function Card:is_face(from_boss)
     local ret = is_face_ref(self, from_boss)
@@ -46,7 +47,9 @@ function Card:is_face(from_boss)
     return ret
 end
 
--- if Mr. Rorschach is in deck, add all ranks to Wild Card rank table
+-- #endregion
+
+-- #region if Mr. Rorschach is in deck, add all ranks to Wild Card rank table
 local ids_op_ref = ids_op
 function ids_op(card, op, b, c)
     local id = card:get_id()
@@ -106,3 +109,60 @@ function SMODS.insert_repetitions(ret, eval, effect_card, _type)
     G.GAME.sxf_retriggered_value = effect_card:get_chip_bonus()
     return retu
 end
+
+-- #endregion
+
+-- #region go through G.jokers.cards to check what jokers are left of eldritch_joker
+check_jokers_left_of_eldritch = function ()
+    if next(SMODS.find_card('j_sxf_eldritch_joker')) then
+        for i, v in ipairs(G.jokers.cards) do
+            if v.config.center.key == 'j_sxf_eldritch_joker' then
+                if i > 1 then
+                    G.GAME.sxf_sacrificed_joker_count = i - 1
+                    for j = 1, i - 1 do
+                        SMODS.debuff_card(G.jokers.cards[j], true, 'j_sxf_eldritch_joker')
+                    end
+                end
+                if i < #G.jokers.cards then
+                    for k = i, #G.jokers.cards do
+                        SMODS.debuff_card(G.jokers.cards[k], "prevent_debuff", 'j_sxf_eldritch_joker')
+                    end
+                end
+                if i == 1 then
+                    G.GAME.sxf_sacrificed_joker_count = 0
+                end
+            end
+        end
+    end
+end
+-- #endregion
+
+-- #region call check_jokers_left_of_eldritch() when stop_drag() is called
+local stop_drag_ref = Moveable.stop_drag
+function Moveable:stop_drag()
+    local ret = stop_drag_ref(self)
+    check_jokers_left_of_eldritch()
+    --[[
+    for i = 1, #G.jokers.cards do
+        -- debuff jokers to the left of eldritch_joker
+        if G.jokers.cards[i] == card and i > 1 then
+            G.GAME.sxf_sacrificed_joker_count = i - 1
+            for j = 1, G.GAME.sxf_sacrificed_joker_count do
+                SMODS.debuff_card(G.jokers.cards[j], true, 'j_sxf_eldritch_joker')
+            end
+            -- if eldritch_joker is only joker, set sacrificed_joker_count (multiplier) to 0
+        elseif G.jokers.cards[i] == card and i == 1 then
+            G.GAME.sxf_sacrificed_joker_count = 0
+        end
+        -- undebuff jokers to the right of eldritch_joker
+        if i < #G.jokers.cards then
+            for k = i, #G.jokers.cards do
+                SMODS.debuff_card(G.jokers.cards[k], "prevent_debuff", 'j_sxf_eldritch_joker')
+            end
+        end
+    end
+    --]]
+    return ret
+end
+
+-- #endregion
